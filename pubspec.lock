@@ -65,7 +65,7 @@ packages:
     source: hosted
     version: "2.0.9"
   build_runner:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: build_runner
       url: "https://pub.dartlang.org"
@@ -121,7 +121,7 @@ packages:
     source: hosted
     version: "1.1.0"
   cloud_firestore:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: cloud_firestore
       url: "https://pub.dartlang.org"
@@ -205,7 +205,7 @@ packages:
     source: hosted
     version: "6.1.4"
   firebase_auth:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: firebase_auth
       url: "https://pub.dartlang.org"
@@ -226,7 +226,7 @@ packages:
     source: hosted
     version: "4.4.0"
   firebase_core:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: firebase_core
       url: "https://pub.dartlang.org"
@@ -259,7 +259,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_lints:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_lints
       url: "https://pub.dartlang.org"
@@ -290,7 +290,7 @@ packages:
     source: hosted
     version: "2.1.0"
   google_sign_in:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: google_sign_in
       url: "https://pub.dartlang.org"
@@ -346,7 +346,7 @@ packages:
     source: hosted
     version: "1.1.0"
   hive_generator:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: hive_generator
       url: "https://pub.dartlang.org"
@@ -395,7 +395,7 @@ packages:
     source: hosted
     version: "4.6.0"
   like_button:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: like_button
       url: "https://pub.dartlang.org"
