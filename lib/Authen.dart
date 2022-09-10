@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
+import 'Screen/main.dart';
 
 class Authentication {
   static Future<FirebaseApp> initializeFirebase() async {
@@ -44,10 +47,12 @@ class Authentication {
         try {
           final UserCredential userCredential =
               await auth.signInWithCredential(credential);
-
           user = userCredential.user;
-          // var box = await Hive.openBox('user');
-          // box.add(user);
+          print("adding");
+          box.add(user?.email.toString());
+          box.add(user?.displayName.toString());
+          box.add(user?.photoURL.toString());
+          print("Add ok");
         } on FirebaseAuthException catch (e) {
           if (e.code == 'account-exists-with-different-credential') {
             ScaffoldMessenger.of(context).showSnackBar(

@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:vote_app/Screen/ConfirmScreen.dart';
 import 'LoginScreen.dart';
 
 late Box box;
 Future main() async {
   await Hive.initFlutter();
-  box = await Hive.openBox("user");
+  box = await Hive.openBox("login");
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       // home: const MyHomePage(title: 'Votinggg'),
-      home: const LoginScreen(),
+      home: box.length != 0 ? const UserScreen() : const LoginScreen(),
     );
   }
 }

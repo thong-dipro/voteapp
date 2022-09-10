@@ -7,8 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:vote_app/Screen/VotingItem.dart';
 
 class VotingScreen extends StatefulWidget {
-  const VotingScreen({Key? key, required this.user}) : super(key: key);
-  final User user;
+  const VotingScreen({Key? key}) : super(key: key);
 
   @override
   State<VotingScreen> createState() => _VotingScreenState();
@@ -54,10 +53,7 @@ class _VotingScreenState extends State<VotingScreen> {
                                 .collection("Repert1");
                             int like = db.snapshots().length as int;
                             return VotingItem(
-                              teams: teams[index],
-                              likeCount: like,
-                              user: widget().user,
-                            );
+                                teams: teams[index], likeCount: like);
                           });
                     } else {
                       return const Text("Hello");

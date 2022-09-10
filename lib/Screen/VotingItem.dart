@@ -6,27 +6,27 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:vote_app/Models/teams.dart';
+import 'package:vote_app/Screen/main.dart';
 import 'package:vote_app/Values/AppStyle.dart';
 
 class VotingItem extends StatefulWidget {
-  const VotingItem(
-      {Key? key,
-      required this.teams,
-      required this.likeCount,
-      required this.user})
+  const VotingItem({Key? key, required this.teams, required this.likeCount})
       : super(key: key);
   final Team teams;
   final int likeCount;
-  final User user;
   @override
   State<VotingItem> createState() => _VotingItemState();
 }
 
 class _VotingItemState extends State<VotingItem> {
   bool isLike = false;
-  late int likeCount = widget().likeCount;
-  late Team teams = widget().teams;
-  late User user = widget().user;
+  late int likeCount = widget.likeCount;
+  late Team teams = widget.teams;
+  late String email = "";
+  Future<void> getEmail() async {
+    email = await box.getAt(0);
+  }
+
   @override
   Widget build(BuildContext context) {
     var db =
@@ -70,7 +70,7 @@ class _VotingItemState extends State<VotingItem> {
                       ),
                       onTap: (isLike) async {
                         final data = {
-                          "Repert1": {"LikeUser": user.email}
+                          "Repert1": {"LikeUser": email}
                         };
                         // db.add(data);
                         this.isLike = !isLike;

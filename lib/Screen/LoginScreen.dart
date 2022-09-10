@@ -37,10 +37,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     await Authentication.signInWithGoogle(context: context)
                         as User;
                 if (user != null) {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => UserScreen(
-                            user: user,
-                          )));
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => UserScreen()));
                 }
               },
               child: Center(

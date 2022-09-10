@@ -1,33 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:vote_app/Authen.dart';
 import 'VotingScreen.dart';
+import 'main.dart';
 
 class UserScreen extends StatefulWidget {
-  const UserScreen({Key? key, required User user})
-      : _user = user,
-        super(key: key);
-  final User _user;
+  const UserScreen({Key? key}) : super(key: key);
 
   @override
   State<UserScreen> createState() => _UserScreenState();
 }
 
 class _UserScreenState extends State<UserScreen> {
-  late User user;
-  String username = "";
-
-  // Future<void> getUsername() async {
-  //   var box = await Hive.openBox('user');
-  //   username = box.length.toString();
-  // }
+  String email = "";
+  String name = "";
+  String avatarUrl = "";
+  Future<void> getUsername() async {
+    setState(() {
+      email = box.getAt(0);
+      name = box.getAt(1);
+      avatarUrl = box.getAt(2);
+    });
+  }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    user = widget()._user;
+    getUsername();
   }
 
   @override
@@ -37,7 +39,8 @@ class _UserScreenState extends State<UserScreen> {
       body: Center(
           child: Column(
         children: [
-          Text("Hello ${user.displayName}, email: ${username}"),
+          Text("Hello ${name}, your email address is: ${email}"),
+          Image.network(avatarUrl),
           TextButton(
               onPressed: () {
                 Authentication.signOut(context: context);
@@ -49,8 +52,8 @@ class _UserScreenState extends State<UserScreen> {
               )),
           TextButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => VotingScreen(user: user)));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => VotingScreen()));
               },
               child: Text(
                 "Continue",
